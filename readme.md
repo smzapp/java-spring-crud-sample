@@ -9,6 +9,9 @@ By Samuel
 - web spring
 - h2database
 3. For intellij, if resources and project files don't exist, refresh maven.
+4. Run in Postman
+- body > raw > json
+  https://i.imgur.com/KB8qCRh.png
 
 # Commands
 1. clear maven. it's like clearing cache. I'm not sure. :D

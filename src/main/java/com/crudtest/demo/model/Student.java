@@ -1,9 +1,12 @@
 package com.crudtest.demo.model;
 
+import com.crudtest.demo.validation.Age;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "students")
@@ -22,18 +25,19 @@ public class Student {
     private String email;
 
     @Column(name = "contact_no")
+    @Size(min = 3, message = "Should have at least 3 numbers")
     private String contactNo;
 
     @Column(name = "age")
     private int age;
 
     @Column(name = "student_no")
-    private long studentNumber;
+    private String studentNumber;
 
     public Student() {
     }
 
-    public Student(String name, String email, String contactNo, int age, long studentNumber) {
+    public Student(String name, String email, String contactNo, int age, String studentNumber) {
         this.name = name;
         this.email = email;
         this.contactNo = contactNo;
@@ -81,11 +85,11 @@ public class Student {
         this.age = age;
     }
 
-    public long getStudentNumber() {
+    public String getStudentNumber() {
         return studentNumber;
     }
 
-    public void setStudentNumber(long studentNumber) {
+    public void setStudentNumber(String studentNumber) {
         this.studentNumber = studentNumber;
     }
 }
