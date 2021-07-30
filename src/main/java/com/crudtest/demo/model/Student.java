@@ -1,9 +1,10 @@
 package com.crudtest.demo.model;
 
-import com.crudtest.demo.validation.AgeConstraint;
+import com.crudtest.demo.validation.Age;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -15,23 +16,27 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotEmpty
     @Column(name = "name")
     private String name;
 
-    @NotNull
+    @NotEmpty
     @Email(message = "Email address must be a valid email.")
     @Column(name = "email")
     private String email;
 
+    @NotEmpty
     @Column(name = "contact_no")
     @Size(min = 3, message = "Should have at least 3 numbers")
     private String contactNo;
 
-    @AgeConstraint
+    @NotNull
+    @Age
     @Column(name = "age")
     private int age;
 
-    @Column(name = "student_no")
+    @NotEmpty
+    @Column(name = "student_no", unique = true)
     private String studentNumber;
 
     public Student() {}
