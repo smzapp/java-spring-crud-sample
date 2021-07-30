@@ -5,12 +5,17 @@ import com.crudtest.demo.model.Student;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class AgeValidator implements ConstraintValidator<AgeConstraint, Student> {
+public class AgeValidator implements ConstraintValidator<AgeConstraint, String> {
 
     @Override
-    public boolean isValid(Student student, ConstraintValidatorContext constraintValidatorContext) {
+    public void initialize(AgeConstraint constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+    }
+
+    @Override
+    public boolean isValid(String age, ConstraintValidatorContext constraintValidatorContext) {
         try {
-            int ageInt = Integer.parseInt(student.getAge());
+            int ageInt = Integer.parseInt(age);
             return (ageInt > 0 && ageInt  < 200);
         } catch (Exception e) {
             return false;

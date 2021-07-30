@@ -15,7 +15,7 @@ import java.util.*;
 /**
  * We want to change the validation response globally.
  */
-@RestController
+@ControllerAdvice
 public class ResponseValidationAdvisor extends ResponseEntityExceptionHandler {
 
     Map<String, String>  messages = new HashMap<>();
