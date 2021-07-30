@@ -1,6 +1,9 @@
 package com.crudtest.demo.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "students")
@@ -13,6 +16,8 @@ public class Student {
     @Column(name = "name")
     private String name;
 
+    @NotNull
+    @Email(message = "Email address must be a valid email.")
     @Column(name = "email")
     private String email;
 
@@ -22,7 +27,7 @@ public class Student {
     @Column(name = "age")
     private int age;
 
-    @Column(name = "student_number")
+    @Column(name = "student_no")
     private long studentNumber;
 
     public Student() {

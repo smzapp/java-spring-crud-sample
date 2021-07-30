@@ -1,21 +1,28 @@
 package com.crudtest.demo.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.crudtest.demo.model.Student;
+import com.crudtest.demo.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/students")
+@RequestMapping("/api")
 public class StudentController {
 
-    @GetMapping("")
-    public String index() {
-        return "woww";
-    }
+    @Autowired
+    private StudentService studentService;
 
-    @GetMapping("/item")
-    public String item() {
-        return "item";
+//    @PostMapping("/students")
+//    public String create(){
+//        return "students";
+//    }
+
+    @PostMapping("/students")
+    public ResponseEntity<Student> createStudent(@RequestParam Student student) {
+        Student stud = studentService.create(student);
+        return new ResponseEntity<>(stud, HttpStatus.CREATED);
     }
 
 }

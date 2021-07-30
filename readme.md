@@ -10,6 +10,12 @@ By Samuel
 - h2database
 3. For intellij, if resources and project files don't exist, refresh maven.
 
+# Commands
+1. clear maven. it's like clearing cache. I'm not sure. :D
+`````
+$ mvnw clean
+`````
+
 
 # FAQs
 1. Removing and installing of dependency
