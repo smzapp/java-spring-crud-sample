@@ -1,10 +1,9 @@
 package com.crudtest.demo.model;
 
-import com.crudtest.demo.validation.Age;
+import com.crudtest.demo.validation.AgeConstraint;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -28,14 +27,14 @@ public class Student {
     @Size(min = 3, message = "Should have at least 3 numbers")
     private String contactNo;
 
+    @AgeConstraint
     @Column(name = "age")
     private int age;
 
     @Column(name = "student_no")
     private String studentNumber;
 
-    public Student() {
-    }
+    public Student() {}
 
     public Student(String name, String email, String contactNo, int age, String studentNumber) {
         this.name = name;
