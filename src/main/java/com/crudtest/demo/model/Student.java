@@ -1,11 +1,28 @@
 package com.crudtest.demo.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "students")
 public class Student {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "contact_no")
     private String contactNo;
+
+    @Column(name = "age")
     private int age;
+
+    @Column(name = "student_number")
     private long studentNumber;
 
     public Student() {
