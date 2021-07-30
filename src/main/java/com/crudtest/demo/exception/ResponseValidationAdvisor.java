@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -14,7 +15,7 @@ import java.util.*;
 /**
  * We want to change the validation response globally.
  */
-@ControllerAdvice
+@RestController
 public class ResponseValidationAdvisor extends ResponseEntityExceptionHandler {
 
     Map<String, String>  messages = new HashMap<>();

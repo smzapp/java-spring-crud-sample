@@ -11,6 +11,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "students")
+@AgeConstraint
 public class Student {
 
     @Id
@@ -33,7 +34,6 @@ public class Student {
 
     @NotNull
     @Column(name = "age")
-    @AgeConstraint
     private String age;
 
     @NotEmpty
