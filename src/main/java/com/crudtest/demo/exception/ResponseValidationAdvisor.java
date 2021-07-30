@@ -18,13 +18,15 @@ import java.util.*;
 @ControllerAdvice
 public class ResponseValidationAdvisor extends ResponseEntityExceptionHandler {
 
-    Map<String, String>  messages = new HashMap<>();
-
     /**
      * Customize response validation
      */
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        // put this as local variable. Diri ra jud ni dapat.
+        // Don't put as field variable or else, error message will keep on displaying.
+        Map<String, String>  messages = new HashMap<>();
+
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String field = ((FieldError) error).getField();
             String message = error.getDefaultMessage();

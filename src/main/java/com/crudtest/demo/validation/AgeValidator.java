@@ -7,6 +7,8 @@ import javax.validation.ConstraintValidatorContext;
 
 public class AgeValidator implements ConstraintValidator<AgeConstraint, String> {
 
+    private String field;
+
     @Override
     public void initialize(AgeConstraint constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
@@ -18,7 +20,8 @@ public class AgeValidator implements ConstraintValidator<AgeConstraint, String> 
             int ageInt = Integer.parseInt(age);
             return (ageInt > 0 && ageInt  < 200);
         } catch (Exception e) {
-            return false;
+            System.out.println("Has Error");
         }
+        return false;
     }
 }
