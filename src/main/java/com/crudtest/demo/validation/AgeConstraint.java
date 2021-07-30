@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = AgeValidation.class)
 public @interface AgeConstraint {
-    String message() default "Please input a valid age";
+    String message() default "Age must be a number and not greater than 200.";
 
     Class<?>[] groups() default {};
 
