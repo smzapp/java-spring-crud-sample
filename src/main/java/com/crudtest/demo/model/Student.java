@@ -1,6 +1,7 @@
 package com.crudtest.demo.model;
 
-import com.crudtest.demo.validation.Age;
+
+import com.crudtest.demo.validation.AgeConstraint;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -31,9 +32,9 @@ public class Student {
     private String contactNo;
 
     @NotNull
-    @Age
     @Column(name = "age")
-    private int age;
+    @AgeConstraint
+    private String age;
 
     @NotEmpty
     @Column(name = "student_no", unique = true)
@@ -41,7 +42,7 @@ public class Student {
 
     public Student() {}
 
-    public Student(String name, String email, String contactNo, int age, String studentNumber) {
+    public Student(String name, String email, String contactNo, String age, String studentNumber) {
         this.name = name;
         this.email = email;
         this.contactNo = contactNo;
@@ -81,11 +82,11 @@ public class Student {
         this.contactNo = contactNo;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
