@@ -17,7 +17,7 @@ public class StudentService {
 
     public Student create(Student student) throws Exception {
         if (studentRepository.existsByStudentNumber(student.getStudentNumber())) {
-            throw new DuplicateEntryException("Student number already exists");
+            throw new DuplicateEntryException("student_number", "Student number already exists");
         }
         return studentRepository.save(student);
     }

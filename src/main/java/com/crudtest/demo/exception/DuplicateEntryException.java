@@ -2,9 +2,14 @@ package com.crudtest.demo.exception;
 
 public class DuplicateEntryException extends RuntimeException {
 
-    public DuplicateEntryException(String message){
+    private String field;
+
+    public DuplicateEntryException(String field, String message){
         super(message);
+        this.field = field;
     }
 
-    public DuplicateEntryException() {}
+    public String getField() {
+        return field;
+    }
 }

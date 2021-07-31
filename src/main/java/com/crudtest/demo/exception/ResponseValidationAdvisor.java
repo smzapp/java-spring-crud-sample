@@ -23,17 +23,17 @@ import java.util.*;
 @ControllerAdvice
 public class ResponseValidationAdvisor extends ResponseEntityExceptionHandler {
 
-    /**
-     * 500
-     */
     @ExceptionHandler(DuplicateEntryException.class)
     public ResponseEntity<Object> handleDuplicateEntry(DuplicateEntryException ex,
                                          HttpServletRequest request,
                                          HttpServletResponse response) {
+        Map<String, String>  messages = new HashMap<>();
+        messages.put(ex.getField(), ex.getMessage());
+
         Map<String, Object> errors = new HashMap<>();
         errors.put("timestamp", new Date());
-        errors.put("status", HttpStatus.INTERNAL_SERVER_ERROR);
-        errors.put("message", ex.getMessage());
+        errors.put("status", HttpStatus.BAD_REQUEST);
+        errors.put("errors", Arrays.asList(messages));
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
@@ -57,7 +57,7 @@ public class ResponseValidationAdvisor extends ResponseEntityExceptionHandler {
         Map<String, Object> errors = new HashMap<>();
         errors.put("timestamp", new Date());
         errors.put("status", status.value());
-        errors.put("errors", messages);
+        errors.put("errors", Arrays.asList(messages));
         return new ResponseEntity<Object>(errors, HttpStatus.BAD_REQUEST);
     }
 }
