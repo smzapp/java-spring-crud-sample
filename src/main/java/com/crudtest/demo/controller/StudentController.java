@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -16,10 +17,10 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-//    @PostMapping("/students")
-//    public String create(){
-//        return "students";
-//    }
+    @GetMapping("/students")
+    public List<Student> index() {
+        return this.studentService.allStudents();
+    }
 
     @PostMapping("/students")
     public ResponseEntity<Student> createStudent(@Valid @RequestBody Student student) {
