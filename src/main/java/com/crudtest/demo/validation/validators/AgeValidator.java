@@ -1,13 +1,14 @@
-package com.crudtest.demo.validation;
+package com.crudtest.demo.validation.validators;
 
 import com.crudtest.demo.model.Student;
+import com.crudtest.demo.validation.AgeConstraint;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 public class AgeValidator implements ConstraintValidator<AgeConstraint, String> {
 
-    private String field;
+    private String message;
 
     @Override
     public void initialize(AgeConstraint constraintAnnotation) {

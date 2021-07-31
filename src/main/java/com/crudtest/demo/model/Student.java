@@ -2,6 +2,7 @@ package com.crudtest.demo.model;
 
 
 import com.crudtest.demo.validation.AgeConstraint;
+import com.crudtest.demo.validation.ContactConstraint;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -28,7 +29,7 @@ public class Student {
 
     @NotEmpty
     @Column(name = "contact_no")
-    @Size(min = 3, message = "Should have at least 3 numbers")
+    @ContactConstraint
     private String contactNo;
 
     @NotNull
