@@ -23,7 +23,7 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public ResponseEntity<Student> createStudent(@Valid @RequestBody Student student) {
+    public ResponseEntity<Student> createStudent(@Valid @RequestBody Student student) throws Exception {
         Student stud = studentService.create(student);
         return new ResponseEntity<>(stud, HttpStatus.CREATED);
     }
