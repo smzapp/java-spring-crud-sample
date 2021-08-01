@@ -21,11 +21,15 @@ public class StudentService {
         return student;
     }
 
-    public Student create(Student student) throws Exception {
+    public Student create(Student student) throws DuplicateEntryException {
         if (studentRepository.existsByStudentNumber(student.getStudentNumber())) {
             throw new DuplicateEntryException("student_number", "Student number already exists");
         }
         return studentRepository.save(student);
+    }
+
+    public Student getByStudentId(Long id) {
+        return studentRepository.findById(id).get();
     }
 
     public Student update(Student student, Long id){

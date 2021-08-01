@@ -1,5 +1,6 @@
 package com.crudtest.demo.controller;
 
+import com.crudtest.demo.exception.DuplicateEntryException;
 import com.crudtest.demo.model.Student;
 import com.crudtest.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,15 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<Student> createStudent(@Valid @RequestBody Student student) throws Exception {
+    public ResponseEntity<Student> createStudent(@Valid @RequestBody Student student) throws DuplicateEntryException {
         Student stud = studentService.create(student);
         return new ResponseEntity<>(stud, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Student> findById(@PathVariable("id") Long id) {
+        Student student = studentService.getByStudentId(id);
+        return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
