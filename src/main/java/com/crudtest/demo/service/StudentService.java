@@ -27,4 +27,8 @@ public class StudentService {
         studentRepository.findAll().forEach(stud -> student.add(stud));
         return student;
     }
+
+    public Student createOrUpdate(Student student) {
+        return studentRepository.save(student);
+    }
 }

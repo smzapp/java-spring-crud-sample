@@ -11,21 +11,29 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/students")
 public class StudentController {
 
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/students")
+    @GetMapping
     public List<Student> index() {
         return this.studentService.allStudents();
     }
 
-    @PostMapping("/students")
+    @PostMapping
     public ResponseEntity<Student> createStudent(@Valid @RequestBody Student student) throws Exception {
         Student stud = studentService.create(student);
         return new ResponseEntity<>(stud, HttpStatus.CREATED);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Student> update(
+            @Valid @RequestBody Student student,
+            @PathVariable("id") Long id) {
+        student.setId(id);
+        Student stud = studentService.createOrUpdate(student);
+        return new ResponseEntity<>(stud, HttpStatus.CREATED);
+    }
 }
