@@ -15,6 +15,12 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+    public List<Student> all() {
+        List<Student> student = new ArrayList<Student>();
+        studentRepository.findAll().forEach(stud -> student.add(stud));
+        return student;
+    }
+
     public Student create(Student student) throws Exception {
         if (studentRepository.existsByStudentNumber(student.getStudentNumber())) {
             throw new DuplicateEntryException("student_number", "Student number already exists");
@@ -22,13 +28,8 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    public List<Student> allStudents() {
-        List<Student> student = new ArrayList<Student>();
-        studentRepository.findAll().forEach(stud -> student.add(stud));
-        return student;
-    }
-
-    public Student createOrUpdate(Student student) {
+    public Student update(Student student, Long id){
+        student.setId(id);
         return studentRepository.save(student);
     }
 }

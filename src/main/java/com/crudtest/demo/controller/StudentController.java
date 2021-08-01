@@ -19,7 +19,7 @@ public class StudentController {
 
     @GetMapping
     public List<Student> index() {
-        return this.studentService.allStudents();
+        return this.studentService.all();
     }
 
     @PostMapping
@@ -29,11 +29,8 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Student> update(
-            @Valid @RequestBody Student student,
-            @PathVariable("id") Long id) {
-        student.setId(id);
-        Student stud = studentService.createOrUpdate(student);
+    public ResponseEntity<Student> update(@Valid @RequestBody Student student,@PathVariable("id") Long id) {
+        Student stud = studentService.update(student, id);
         return new ResponseEntity<>(stud, HttpStatus.CREATED);
     }
 }
