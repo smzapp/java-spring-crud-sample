@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/students")
@@ -39,5 +40,10 @@ public class StudentController {
     public ResponseEntity<Student> update(@Valid @RequestBody Student student,@PathVariable("id") Long id) {
         Student stud = studentService.update(student, id);
         return new ResponseEntity<>(stud, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public Map<String, Object> delete(@PathVariable("id") Long id) {
+        return studentService.delete(id);
     }
 }

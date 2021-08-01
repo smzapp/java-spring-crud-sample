@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StudentService {
@@ -35,5 +37,13 @@ public class StudentService {
     public Student update(Student student, Long id){
         student.setId(id);
         return studentRepository.save(student);
+    }
+
+    public Map<String, Object> delete(Long id) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Successfully deleted");
+        response.put("ID", id);
+        studentRepository.deleteById(id);
+        return response;
     }
 }
