@@ -22,8 +22,8 @@ public class StudentController {
 
     @GetMapping
     public List<Student> index(
-            @RequestParam("age") String age,
-            @RequestParam("name") String name
+            @RequestParam(value = "age", required = false) String age,
+            @RequestParam(value = "name", required = false) String name
     ) {
         Student student = new Student();
         student.setName(name);
