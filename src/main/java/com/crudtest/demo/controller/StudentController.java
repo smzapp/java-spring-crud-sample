@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/students")
@@ -20,8 +21,14 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping
-    public List<Student> index() {
-        return this.studentService.all();
+    public List<Student> index(
+            @RequestParam("age") String age,
+            @RequestParam("name") String name
+    ) {
+        Student student = new Student();
+        student.setName(name);
+        student.setAge(age);
+        return this.studentService.filterStudents(student);
     }
 
     @PostMapping

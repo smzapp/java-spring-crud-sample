@@ -17,11 +17,21 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    public List<Student> all() {
-        List<Student> student = new ArrayList<Student>();
-        studentRepository.findAll().forEach(stud -> student.add(stud));
-        return student;
+    private final List<Student> studentList = new ArrayList<Student>();
+
+    public List<Student> filterStudents(Student studentInfo) {
+        if (! studentInfo.getName().isEmpty()) {
+            return this.findByName(studentInfo.getName());
+        }
+
+        studentRepository.findAll().forEach(stud -> studentList.add(stud));
+        return studentList;
     }
+
+    public List<Student> findByName(String name) {
+        return studentRepository.findByName(name);
+    }
+
 
     public Student create(Student student) throws DuplicateEntryException {
         if (studentRepository.existsByStudentNumber(student.getStudentNumber())) {
