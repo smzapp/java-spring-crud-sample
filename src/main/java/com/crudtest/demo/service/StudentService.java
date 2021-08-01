@@ -3,13 +3,11 @@ package com.crudtest.demo.service;
 import com.crudtest.demo.exception.DuplicateEntryException;
 import com.crudtest.demo.model.Student;
 import com.crudtest.demo.repository.StudentRepository;
+import com.crudtest.demo.util.AgeRange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class StudentService {
@@ -17,24 +15,20 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    private final List<Student> studentList = new ArrayList<Student>();
-
     public List<Student> filterStudents(Student studentInfo) {
 
-//        if(true) {
-//            return studentRepository.finByAge(studentInfo.getAge(), studentInfo.getAge());
-//        }
-
-        if (! studentInfo.getName().isEmpty()) {
-            return this.findByName(studentInfo.getName());
+        if (! studentInfo.getAge().isEmpty()) {
+            AgeRange range = new AgeRange(studentInfo.getAge());
+            return studentRepository.finByAge(range.getAgeFrom(), range.getAgeTo());
         }
 
+        if (! studentInfo.getName().isEmpty()) {
+            return studentRepository.findByName(studentInfo.getName());
+        }
+
+        List<Student> studentList = new ArrayList<Student>();
         studentRepository.findAll().forEach(stud -> studentList.add(stud));
         return studentList;
-    }
-
-    public List<Student> findByName(String name) {
-        return studentRepository.findByName(name);
     }
 
 

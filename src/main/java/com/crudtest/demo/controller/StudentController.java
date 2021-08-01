@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
+/**
+ * By Samuel
+ */
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
@@ -25,10 +27,7 @@ public class StudentController {
             @RequestParam(value = "age", required = false) String age,
             @RequestParam(value = "name", required = false) String name
     ) {
-        Student student = new Student();
-        student.setName(name);
-        student.setAge(age);
-        return this.studentService.filterStudents(student);
+        return this.studentService.filterStudents(new Student(name, age));
     }
 
     @PostMapping

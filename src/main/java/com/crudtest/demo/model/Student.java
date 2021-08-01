@@ -43,6 +43,13 @@ public class Student implements Serializable {
 
     public Student() {}
 
+    // for searching
+    public Student(String name, String age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // all fields
     public Student(String name, String email, String contactNo, String age, String studentNumber) {
         this.name = name;
         this.email = email;
