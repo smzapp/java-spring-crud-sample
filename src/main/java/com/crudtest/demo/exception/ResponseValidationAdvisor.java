@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -23,6 +24,30 @@ import java.util.*;
  */
 @ControllerAdvice
 public class ResponseValidationAdvisor extends ResponseEntityExceptionHandler {
+
+    /**
+     * Custom Holder of error messages
+     */
+    private  ResponseEntity<Object> customErrorContainer( Map<String, Object> messages, Object status) {
+        Map<String, Object> errors = new HashMap<>();
+        errors.put("timestamp", new Date());
+        errors.put("status", status);
+        errors.put("errors", Arrays.asList(messages));
+        return new ResponseEntity<>(errors, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handle(Exception ex,
+                                         HttpServletRequest request, HttpServletResponse response) {
+        if (ex instanceof SearchEntryException) {
+            Map<String, Object> errors = new HashMap<>();
+            errors.put(((SearchEntryException) ex).getField(), ex.getMessage());
+            return this.customErrorContainer(errors, HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
 
     @ExceptionHandler(DuplicateEntryException.class)
     public ResponseEntity<Object> handleDuplicateEntry(DuplicateEntryException ex,

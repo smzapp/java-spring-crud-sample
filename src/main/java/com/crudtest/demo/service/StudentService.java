@@ -1,6 +1,7 @@
 package com.crudtest.demo.service;
 
 import com.crudtest.demo.exception.DuplicateEntryException;
+import com.crudtest.demo.exception.SearchEntryException;
 import com.crudtest.demo.filter.StudentFilter;
 import com.crudtest.demo.model.Student;
 import com.crudtest.demo.repository.StudentRepository;
@@ -16,7 +17,7 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    public List<Student> filterStudents(Student studentInfo) {
+    public List<Student> filterStudents(Student studentInfo) throws SearchEntryException {
         StudentFilter studentFilter = new StudentFilter(studentInfo, studentRepository);
         return studentFilter.getResult();
     }

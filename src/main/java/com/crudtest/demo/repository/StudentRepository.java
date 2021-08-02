@@ -15,5 +15,5 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findByName(String name);
 
     @Query(value = "SELECT * FROM students WHERE age >= :ageFrom AND age <= :ageTo", nativeQuery = true)
-    List<Student> finByAge(String ageFrom, String ageTo);
+    List<Student> finByAge(int ageFrom, int ageTo);
 }

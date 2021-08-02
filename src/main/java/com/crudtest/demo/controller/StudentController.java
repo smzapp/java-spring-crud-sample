@@ -1,6 +1,7 @@
 package com.crudtest.demo.controller;
 
 import com.crudtest.demo.exception.DuplicateEntryException;
+import com.crudtest.demo.exception.SearchEntryException;
 import com.crudtest.demo.model.Student;
 import com.crudtest.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class StudentController {
     public List<Student> index(
             @RequestParam(value = "age", required = false) String age,
             @RequestParam(value = "name", required = false) String name
-    ) {
+    ) throws SearchEntryException {
         return this.studentService.filterStudents(new Student(name, age));
     }
 

@@ -1,5 +1,6 @@
 package com.crudtest.demo.filter;
 
+import com.crudtest.demo.exception.SearchEntryException;
 import com.crudtest.demo.model.Student;
 import com.crudtest.demo.repository.StudentRepository;
 import com.crudtest.demo.util.AgeRange;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class StudentFilter {
+public class StudentFilter{
 
     @Autowired
     private StudentRepository repository;
@@ -19,20 +20,23 @@ public class StudentFilter {
     private Student student;
 
     // default Constructor is necessary
-    public StudentFilter() {}
+    public StudentFilter() {
+        super();
+    }
 
     public StudentFilter(Student studentInfo, StudentRepository studentRepository) {
+        super();
         this.student = studentInfo;
         this.repository = studentRepository;
     }
 
-    public List<Student> getResult() {
+    public List<Student> getResult() throws SearchEntryException {
         List<Student> result = new ArrayList<>();
         this.searchQueryOptions().forEach(stud -> result.add(stud));
         return  result;
     }
 
-    public List<Student> searchQueryOptions() {
+    public List<Student> searchQueryOptions() throws SearchEntryException {
         if (this.student.getAge() != null && !this.student.getAge().isEmpty()) {
             return this.getByAgeFilter();
         }
@@ -50,10 +54,9 @@ public class StudentFilter {
         return this.repository.findByName(this.student.getName());
     }
 
-    public List<Student> getByAgeFilter() {
+    public List<Student> getByAgeFilter() throws SearchEntryException {
         AgeRange range = new AgeRange(this.student.getAge());
+        range.initialize();
         return this.repository.finByAge(range.getAgeFrom(), range.getAgeTo());
     }
-
-
 }
