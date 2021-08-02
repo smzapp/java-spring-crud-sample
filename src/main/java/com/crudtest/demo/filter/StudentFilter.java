@@ -33,10 +33,10 @@ public class StudentFilter {
     }
 
     public List<Student> searchQueryOptions() {
-        if (!this.student.getAge().isEmpty()) {
+        if (this.student.getAge() != null && !this.student.getAge().isEmpty()) {
             return this.getByAgeFilter();
         }
-        if (!this.student.getName().isEmpty()) {
+        if (this.student.getName() != null && !this.student.getName().isEmpty()) {
             return this.getByNameFilter();
         }
         return this.all();
