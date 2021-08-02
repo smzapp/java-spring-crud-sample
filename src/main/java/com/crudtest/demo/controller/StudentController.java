@@ -1,6 +1,7 @@
 package com.crudtest.demo.controller;
 
 import com.crudtest.demo.exception.DuplicateEntryException;
+import com.crudtest.demo.exception.EntityIdNotFound;
 import com.crudtest.demo.exception.SearchEntryException;
 import com.crudtest.demo.model.Student;
 import com.crudtest.demo.service.StudentService;
@@ -46,11 +47,11 @@ public class StudentController {
     @PutMapping("/{id}")
     public ResponseEntity<Student> update(@Valid @RequestBody Student student,@PathVariable("id") Long id) {
         Student stud = studentService.update(student, id);
-        return new ResponseEntity<>(stud, HttpStatus.CREATED);
+        return new ResponseEntity<>(stud, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public Map<String, Object> delete(@PathVariable("id") Long id) {
+    public Map<String, Object> delete(@PathVariable("id") Long id) throws EntityIdNotFound {
         return studentService.delete(id);
     }
 }

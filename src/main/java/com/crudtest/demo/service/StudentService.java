@@ -1,11 +1,11 @@
 package com.crudtest.demo.service;
 
 import com.crudtest.demo.exception.DuplicateEntryException;
+import com.crudtest.demo.exception.EntityIdNotFound;
 import com.crudtest.demo.exception.SearchEntryException;
 import com.crudtest.demo.filter.StudentFilter;
 import com.crudtest.demo.model.Student;
 import com.crudtest.demo.repository.StudentRepository;
-import com.crudtest.demo.util.AgeRange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,16 +34,20 @@ public class StudentService {
         return studentRepository.findById(id).get();
     }
 
-    public Student update(Student student, Long id){
-        student.setId(id);
-        return studentRepository.save(student);
+    public Student update(Student request, Long id){
+        request.setId(id);
+        return studentRepository.save(request);
     }
 
-    public Map<String, Object> delete(Long id) {
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "Successfully deleted");
-        response.put("ID", id);
-        studentRepository.deleteById(id);
-        return response;
+    public Map<String, Object> delete(Long id) throws EntityIdNotFound {
+        try {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Successfully deleted");
+            response.put("ID", id);
+            studentRepository.deleteById(id);
+            return response;
+        } catch (Exception e) {
+            throw new EntityIdNotFound("There is a problem while deleting.");
+        }
     }
 }

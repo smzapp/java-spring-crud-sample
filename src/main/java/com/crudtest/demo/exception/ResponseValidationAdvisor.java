@@ -40,15 +40,22 @@ public class ResponseValidationAdvisor extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handle(Exception ex,
                                          HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("ERROR 500");
+
+        Map<String, Object> errors = new HashMap<>();
         if (ex instanceof SearchEntryException) {
-            Map<String, Object> errors = new HashMap<>();
             errors.put(((SearchEntryException) ex).getField(), ex.getMessage());
+            return this.customErrorContainer(errors, HttpStatus.BAD_REQUEST);
+        }
+        if (ex instanceof  EntityIdNotFound) {
+            errors.put("id", ex.getMessage());
             return this.customErrorContainer(errors, HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
 
+    // to be refactored
     @ExceptionHandler(DuplicateEntryException.class)
     public ResponseEntity<Object> handleDuplicateEntry(DuplicateEntryException ex,
                                          HttpServletRequest request,
