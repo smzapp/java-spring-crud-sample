@@ -1,0 +1,378 @@
+{
+	"info": {
+		"_postman_id": "5d236e56-2241-46d4-a357-97fcc4bdbcce",
+		"name": "students",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST Student",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"john@test.com\",\r\n    \"age\": \"31\",\r\n    \"studentNumber\": \"123\",\r\n    \"contactNo\": \"09451892\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"students"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "samuel",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "sam@test.com",
+							"disabled": true
+						},
+						{
+							"key": "contact_no",
+							"value": "skjd",
+							"disabled": true
+						},
+						{
+							"key": "age",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "student_no",
+							"value": "ssd",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Student",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John Doe Sr.\",\r\n    \"email\": \"johnsmith@test.com\",\r\n    \"age\": \"32\",\r\n    \"studentNumber\": \"123\",\r\n    \"contactNo\": \"09451892\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/students/39",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"students",
+						"39"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "samuel",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "sam@test.com",
+							"disabled": true
+						},
+						{
+							"key": "contact_no",
+							"value": "skjd",
+							"disabled": true
+						},
+						{
+							"key": "age",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "student_no",
+							"value": "ssd",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL students",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John Doe Sr.\",\r\n    \"email\": \"johnsmith@test.com\",\r\n    \"age\": \"32\",\r\n    \"studentNumber\": \"123\",\r\n    \"contactNo\": \"09451892\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"students"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "samuel",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "sam@test.com",
+							"disabled": true
+						},
+						{
+							"key": "contact_no",
+							"value": "skjd",
+							"disabled": true
+						},
+						{
+							"key": "age",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "student_no",
+							"value": "ssd",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET BY ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John Doe Sr.\",\r\n    \"email\": \"johnsmith@test.com\",\r\n    \"age\": \"32\",\r\n    \"studentNumber\": \"123\",\r\n    \"contactNo\": \"09451892\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/students/39",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"students",
+						"39"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "samuel",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "sam@test.com",
+							"disabled": true
+						},
+						{
+							"key": "contact_no",
+							"value": "skjd",
+							"disabled": true
+						},
+						{
+							"key": "age",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "student_no",
+							"value": "ssd",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE #41",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"delete this\",\r\n    \"email\": \"tobedeleted@test.com\",\r\n    \"age\": \"32\",\r\n    \"studentNumber\": \"545\",\r\n    \"contactNo\": \"09451892\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/students/41",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"students",
+						"41"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "samuel",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "sam@test.com",
+							"disabled": true
+						},
+						{
+							"key": "contact_no",
+							"value": "skjd",
+							"disabled": true
+						},
+						{
+							"key": "age",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "student_no",
+							"value": "ssd",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
