@@ -24,10 +24,10 @@ public class AgeRange {
     }
 
     public String getAgeFrom() {
-        return ageFrom;
+        return "1";
     }
 
     public String getAgeTo() {
-        return ageTo;
+        return "100";
     }
 }
