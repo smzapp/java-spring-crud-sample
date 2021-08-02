@@ -17,24 +17,8 @@ public class StudentService {
     private StudentRepository studentRepository;
 
     public List<Student> filterStudents(Student studentInfo) {
-
         StudentFilter studentFilter = new StudentFilter(studentInfo, studentRepository);
         return studentFilter.getResult();
-
-//        if (studentFilter.hasSearchQuery()) {
-//            studentList = studentFilter.displayResult();
-//        }
-//        if (! studentInfo.getAge().isEmpty()) {
-//            AgeRange range = new AgeRange(studentInfo.getAge());
-//            return studentRepository.finByAge(range.getAgeFrom(), range.getAgeTo());
-//        }
-//
-//        if (! studentInfo.getName().isEmpty()) {
-//            return studentRepository.findByName(studentInfo.getName());
-//        }
-//        List<Student> studentList = new ArrayList<Student>();
-//        studentRepository.findAll().forEach(stud -> studentList.add(stud));
-//        return studentList;
     }
 
 

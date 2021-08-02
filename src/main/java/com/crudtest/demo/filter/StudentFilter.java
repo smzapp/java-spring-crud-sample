@@ -27,20 +27,19 @@ public class StudentFilter {
     }
 
     public List<Student> getResult() {
-        List<Student> studentList = new ArrayList<Student>();
+        List<Student> result = new ArrayList<>();
+        this.searchQueryOptions().forEach(stud -> result.add(stud));
+        return  result;
+    }
 
-//        if (!this.student.getAge().isEmpty()) {
-//            this.getByAgeFilter().forEach(stud -> studentList.add(stud));
-//        } else if (!this.student.getName().isEmpty()) {
-//            System.out.println("NAME SEARCH");
-//            this.getByNameFilter().forEach(stud -> studentList.add(stud));
-//        } else {
-//            this.all().forEach(stud -> studentList.add(stud));
-//        }
-
-        this.getByNameFilter().forEach(stud -> studentList.add(stud));
-        return studentList;
-
+    public List<Student> searchQueryOptions() {
+        if (!this.student.getAge().isEmpty()) {
+            return this.getByAgeFilter();
+        }
+        if (!this.student.getName().isEmpty()) {
+            return this.getByNameFilter();
+        }
+        return this.all();
     }
 
     public List<Student> all() {
